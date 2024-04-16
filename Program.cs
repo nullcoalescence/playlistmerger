@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using SpotifyAPI.Web;
+
 namespace playlistmerger
 {
     public class Program
@@ -7,7 +10,44 @@ namespace playlistmerger
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddRazorPages();
+            builder.Services.AddHttpContextAccessor();
+
+            // Configure Spotify auth
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Spotify", policy =>
+                {
+                    policy.AuthenticationSchemes.Add("Spotify");
+                    policy.RequireAuthenticatedUser();
+                });
+            });
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(option =>
+            {
+                option.ExpireTimeSpan = TimeSpan.FromMinutes(50);
+            }).AddSpotify(options =>
+            {
+                options.ClientId = builder.Configuration["SpotifyApi:ClientId"] ?? "";
+                options.ClientSecret = builder.Configuration["SpotifyApi:ClientSecret"] ?? "";
+                options.CallbackPath = "/Auth/callback";
+                options.SaveTokens = true;
+
+                var scopes = new List<string>()
+                {
+                    Scopes.UserReadEmail,
+                    Scopes.PlaylistReadPrivate
+                };
+
+                options.Scope.Add(string.Join(",", scopes));
+            });
+
+            builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AuthorizeFolder("/", "Spotify");
+            });
 
             var app = builder.Build();
 
