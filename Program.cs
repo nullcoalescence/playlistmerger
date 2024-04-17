@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using playlistmerger.Services;
 using SpotifyAPI.Web;
 
 namespace playlistmerger
@@ -11,6 +12,9 @@ namespace playlistmerger
 
             // Add services to the container.
             builder.Services.AddHttpContextAccessor();
+
+            builder.Services.AddSingleton(SpotifyClientConfig.CreateDefault());
+            builder.Services.AddScoped<SpotifyClientBuilderService>();
 
             // Configure Spotify auth
             builder.Services.AddAuthorization(options =>
@@ -25,10 +29,12 @@ namespace playlistmerger
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookie(option =>
+            })
+            .AddCookie(option =>
             {
                 option.ExpireTimeSpan = TimeSpan.FromMinutes(50);
-            }).AddSpotify(options =>
+            })
+            .AddSpotify(options =>
             {
                 options.ClientId = builder.Configuration["SpotifyApi:ClientId"] ?? "";
                 options.ClientSecret = builder.Configuration["SpotifyApi:ClientSecret"] ?? "";
