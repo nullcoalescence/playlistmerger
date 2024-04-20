@@ -18,24 +18,38 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" />
+        <label>Playlist name</label>
+        <input type="text" asp-for="ArtistSearch!.PlaylistName" />
+        <span asp-validation-for="ArtistSearch!.PlaylistName" class="text-danger"></span>
     </div>
+
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" />
+    </div>
+
 </form>
 
-<h3>First Artist</h3>
+
+
 @if (Model.ArtistResults1.Count > 0)
 {
-    <ul>
-        @foreach (var artist in @Model.ArtistResults1)
-        {
-            <li>
-                @artist.ArtistName
-                <br />
-                <img height="50" width="50" src="@artist.ImageUrl" />
-            </li>
-        }
-    </ul>
+    var artist1 = Model.ArtistResults1.First();
+    var artist2 = Model.ArtistResults2.First();
 
+    <h3>Create a playlist of</h3>
+    <div class="artist-block">
+        <img src="@artist1.ImageUrl" height="200" width="200" />
+        <br />
+        <strong>@artist1.ArtistName</strong>
+    </div>
+
+    <div class="artist-block">
+        <img src="@artist2.ImageUrl" height="200" width="200" />
+        <br />
+        <strong>@artist2.ArtistName</strong>
+    </div>
+
+    <a class="btn btn-primary" asp-page="/GeneratePlaylist" asp-route-artist1="@artist1.ArtistName" asp-route-artist2="@artist2.ArtistName" asp-route-playlistName="@Model.ArtistSearch.PlaylistName">Generate</a>
 }
 
 <script src="~/lib/jquery/dist/jquery.js"></script>

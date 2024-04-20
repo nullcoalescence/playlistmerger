@@ -1,0 +1,15 @@
+﻿@page
+@model playlistmerger.Pages.GeneratePlaylistModel
+@{
+}
+
+@if (Model.IsLoading == true)
+{
+    <p>Loading...</p>
+}
+
+@if (Model.IsLoading == false)
+{
+    <h2>Created playlist</h2>
+    <a href="@Model.PlaylistUrl">@Model.PlaylistName</a>
+}

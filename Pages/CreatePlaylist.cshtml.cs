@@ -12,7 +12,7 @@ namespace playlistmerger.Pages
         public ArtistSearch? ArtistSearch { get; set; }
 
         public List<ArtistDto> ArtistResults1 { get; set; } = new List<ArtistDto>();
-        
+        public List<ArtistDto> ArtistResults2 { get; set; } = new List<ArtistDto>();
 
         private readonly ILogger<CreatePlaylistModel> logger;
         private SpotifyService spotifyService;
@@ -35,8 +35,9 @@ namespace playlistmerger.Pages
             }
 
             await this.spotifyService.BuildSpotify();
-            ArtistResults1 = await this.spotifyService.SearchArtists(ArtistSearch.Name1);
-            
+
+            ArtistResults1 = await this.spotifyService.SearchArtistsAsync(ArtistSearch.Name1);
+            ArtistResults2 = await this.spotifyService.SearchArtistsAsync(ArtistSearch.Name2);
 
             return Page();
         }

@@ -44,8 +44,12 @@ namespace playlistmerger
 
                 var scopes = new List<string>()
                 {
-                    Scopes.UserReadEmail,
-                    Scopes.PlaylistReadPrivate
+                    Scopes.UserReadPrivate,
+                    Scopes.UserLibraryModify,
+                    Scopes.PlaylistModifyPrivate,
+                    Scopes.PlaylistModifyPublic,
+                    Scopes.PlaylistReadPrivate,
+                    Scopes.UserLibraryRead
                 };
 
                 options.Scope.Add(string.Join(",", scopes));
