@@ -15,6 +15,7 @@ namespace playlistmerger
 
             builder.Services.AddSingleton(SpotifyClientConfig.CreateDefault());
             builder.Services.AddScoped<SpotifyClientBuilderService>();
+            builder.Services.AddScoped<SpotifyService>();
 
             // Configure Spotify auth
             builder.Services.AddAuthorization(options =>

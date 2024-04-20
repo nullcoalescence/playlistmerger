@@ -21,11 +21,9 @@ namespace playlistmerger.Pages
         public async Task OnGet()
         {
             var spotify = await this.spotifyClientBuilderService.BuildSpotifyClient();
-
             var profile = await spotify.UserProfile.Current();
 
             Username = profile.DisplayName.ToString();
-
         }
     }
 }
