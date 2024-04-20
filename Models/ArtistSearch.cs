@@ -9,5 +9,8 @@ namespace playlistmerger.Models
 
         [Required(ErrorMessage = "Required field")]
         public string Name2 { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        public string PlaylistName { get; set; }
     }
 }

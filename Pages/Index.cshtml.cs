@@ -8,8 +8,6 @@ namespace playlistmerger.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly SpotifyClientBuilderService spotifyClientBuilderService;
 
-        private const int LIMIT = 10;
-
         public string Username { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, SpotifyClientBuilderService spotifyClientBuilderService)
