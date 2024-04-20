@@ -1,0 +1,43 @@
+﻿@page
+@model playlistmerger.Pages.CreatePlaylistModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+
+<form method="post">
+    <div class="form-group">
+        <label>Artist #1</label>
+        <input type="text" asp-for="ArtistSearch!.Name1" />
+        <span asp-validation-for="ArtistSearch!.Name1" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Artist #2</label>
+        <input type="text" asp-for="ArtistSearch!.Name2" />
+        <span asp-validation-for="ArtistSearch!.Name2" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" />
+    </div>
+</form>
+
+<h3>First Artist</h3>
+@if (Model.ArtistResults1.Count > 0)
+{
+    <ul>
+        @foreach (var artist in @Model.ArtistResults1)
+        {
+            <li>
+                @artist.ArtistName
+                <br />
+                <img height="50" width="50" src="@artist.ImageUrl" />
+            </li>
+        }
+    </ul>
+
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
