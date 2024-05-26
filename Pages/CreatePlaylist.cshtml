@@ -5,25 +5,25 @@
 }
 
 <form method="post">
-    <div class="form-group">
+    <div class="form-group col-sm-10">
         <label>Artist #1</label>
-        <input type="text" asp-for="ArtistSearch!.Name1" />
+        <input class="form-control" type="text" asp-for="ArtistSearch!.Name1" />
         <span asp-validation-for="ArtistSearch!.Name1" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-sm-10">
         <label>Artist #2</label>
-        <input type="text" asp-for="ArtistSearch!.Name2" />
+        <input class="form-control" type="text" asp-for="ArtistSearch!.Name2" />
         <span asp-validation-for="ArtistSearch!.Name2" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-sm-10">
         <label>Playlist name</label>
-        <input type="text" asp-for="ArtistSearch!.PlaylistName" />
+        <input class="form-control" type="text" asp-for="ArtistSearch!.PlaylistName" />
         <span asp-validation-for="ArtistSearch!.PlaylistName" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-sm-10">
         <input class="btn btn-primary" type="submit" />
     </div>
 
