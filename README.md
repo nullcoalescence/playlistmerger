@@ -6,10 +6,18 @@
 ## config
 install and setup environment with dotnet-secrets. you'll need to register an app as a spotify dev and get the client id & secret.
 ```
-git clone https://github.com/nullcoalescence/playlistmerger	~/playlistmerger
-dotnet user-secrets init
-dotnet user-secrets set 'SpotifyApi:ClientId' 'your_client_id_here'
-dotnet user-secrets set 'SpotifyApi:ClientSecret' 'your_client_secret_here'
+# clone the repo
+$ git clone https://github.com/nullcoalescence/playlistmerge ~/playlistmerger
+$ cd ~/playlistmarger
+# setup creds
+$ dotnet user-secrets init
+$ dotnet user-secrets set 'SpotifyApi:ClientId' 'your_client_id_here'
+$ dotnet user-secrets set 'SpotifyApi:ClientSecret' 'your_client_secret_here'
+# build/run
+$ dotnet build
+$ dotnet run
+# ... or with docker
+$ docker compose up
 ```
 
 ## todo
